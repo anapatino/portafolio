@@ -1,40 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
+import { router } from "./routes/Route";
+import { RouterProvider } from "react-router-dom";
 import { createTheme, NextUIProvider } from "@nextui-org/react";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
 
-const lightTheme = createTheme({
-  type: "light",
-  theme: {
-    colors: {}, // optional
-  },
-});
 const darkTheme = createTheme({
-  type: "dark", // it could be "light" or "dark"
+  type: "dark",
   theme: {
     colors: {
       // brand colors
-      primaryLight: "$green200",
-      primaryLightHover: "$green300",
-      primaryLightActive: "$green400",
-      primaryLightContrast: "$green600",
-      primary: "#4ADE7B",
-      primaryBorder: "$green500",
-      primaryBorderHover: "$green600",
-      primarySolidHover: "$green700",
-      primarySolidContrast: "$white",
-      primaryShadow: "$green500",
+      black: "#000000",
+      white: "#FFFFFF",
+      lightGray: "#505050",
+      leather: "#C99F63",
+      lightBrown: "#AB7746",
+      mediumBrown: "#715132",
+      darkBrown: "#574432",
 
       gradient:
         "linear-gradient(112deg, $blue100 -25%, $pink500 -10%, $purple500 80%)",
       link: "#5E1DAD",
 
       // you can also create your own color
-      myColor: "#ff4ecd",
-
-      // ...  more colors
+      myColor: "#FFFFFF",
     },
     space: {},
     fonts: {},
@@ -44,17 +33,8 @@ const darkTheme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <NextThemesProvider
-      defaultTheme="system"
-      attribute="class"
-      value={{
-        light: lightTheme.className,
-        dark: darkTheme.className,
-      }}
-    >
-      <NextUIProvider>
-        <App />
-      </NextUIProvider>
-    </NextThemesProvider>
+    <NextUIProvider theme={darkTheme}>
+      <RouterProvider router={router} />
+    </NextUIProvider>
   </React.StrictMode>
 );
